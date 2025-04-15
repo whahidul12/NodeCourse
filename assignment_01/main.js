@@ -9,30 +9,31 @@ const server = http.createServer((req, res) => {
     res.write('<html>')
     res.write('<head><title>whahidul islam</title></head>')
     res.write('<body>')
-
-    res.write('<nav>')
-
-    res.write('<lable for="name">Name: </lable>')
-    res.write('<input type="text" id="name" name="name" placeholder="input your name"')
-
-    res.write('<lable for="gender">Gender: </lable>')
-
-    res.write('<input type="radio" id="male" name="gender" value="male"')
-    res.write('<lable for="male">Male</lable>')
-
-    res.write('<input type="radio" id ="female" name="gender" value="female"')
-    res.write('<lable for="female">Female</lable>')
-
-    res.write('<button type="submit">Submit</button>')
-    res.write('</form>')
+    res.write('<h1>hello world</h1>')
     res.write('</body>')
     res.write('</html>')
-    res.end()
+    return res.end()
+  } else if (req.url === 'books') {
+    res.setHeader('Content-Type', 'text / html');
+    res.write('<html>')
+    res.write('<head><title>whahidul islam</title></head>')
+    res.write('<body>')
+    res.write('<h1>books</h1>')
+    res.write('</body>')
+    res.write('</html>')
+    return res.end()
+  } else {
+    res.setHeader('Content-Type', 'text / html');
+    res.write('<html>')
+    res.write('<head><title>whahidul islam</title></head>')
+    res.write('<body>')
+    res.write('<h1>others</h1>')
+    res.write('</body>')
+    res.write('</html>')
+    return res.end()
   }
-
 });
 
 server.listen(PORT, () => {
   console.log(`Running... at 'http://localhost:${PORT}'`);
-
 })
