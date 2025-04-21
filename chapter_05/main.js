@@ -29,6 +29,20 @@ const server = http.createServer((req, res) => {
     res.end()
   } else if (req.url === "/submit-form" && req.method === "POST") {
 
+    const body = [];
+
+    req.on('data', cuk => {
+      console.log(cuk);
+      body.push(cuk);
+    })
+
+    req.on('end', () => {
+      const perseBody = Buffer.concat(body).toString();
+      console.log('>>><<', perseBody);
+      console.log('>>>b<', body);
+
+    })
+
     res.statusCode = 302;
     res.setHeader('location', '/done')
     res.end()
