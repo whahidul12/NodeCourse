@@ -14,13 +14,14 @@ const server = http.createServer((req, res) => {
     res.write('<lable for="name">Name: </lable>')
     res.write('<input type="text" id="name" name="name" placeholder="input your name"')
 
-    res.write('<lable for="gender">Gender: </lable>')
+    res.write('<lable for="gender">Gender:')
 
     res.write('<input type="radio" id="male" name="gender" value="male"')
     res.write('<lable for="male">Male</lable>')
 
     res.write('<input type="radio" id ="female" name="gender" value="female"')
     res.write('<lable for="female">Female</lable>')
+    res.write('</lable>')
 
     res.write('<button type="submit">Submit</button>')
     res.write('</form>')
