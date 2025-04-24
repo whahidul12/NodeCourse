@@ -1,3 +1,6 @@
+function detectType(value) {
+  return Object.prototype.toString.call(value).slice(8, -1);
+}
 const fs = require('fs');
 const http = require('http');
 const { json } = require('stream/consumers');
@@ -41,23 +44,24 @@ const server = http.createServer((req, res) => {
   } else if (req.url === '/submit-form' && req.method === 'POST') {
     const fullChunk = [];
     req.on('data', (chunk) => {
-      console.log(chunk);
+      console.log('type:', detectType(chunk), 'chunk:', chunk);
       fullChunk.push(chunk);
     })
     req.on('end', () => {
       const persedChunk = Buffer.concat(fullChunk).toString();
-      console.log('>>><<', persedChunk);
+      console.log('type:', detectType(persedChunk), 'persedChunk:', persedChunk);
       const rawData = new URLSearchParams(persedChunk);
-      console.log('rawData:', rawData);
+      console.log('type:', detectType(rawData), 'rawData:', rawData);
 
       rawObj = {};
 
       for (const [key, value] of rawData.entries()) {
         rawObj[key] = value
       }
-      console.log('/>>/>', rawObj);
+      console.log('type:', detectType(rawObj), 'rawObj:', rawObj);
       const rawObjString = JSON.stringify(rawObj)
       fs.writeFileSync('dataBase.txt', rawObjString)
+      console.log('type:', detectType(rawObjString), 'rawObjString:', rawObjString);
     })
     res.statusCode = 302;
     res.setHeader('Location', '/success');
@@ -103,6 +107,6 @@ const server = http.createServer((req, res) => {
   }
 });
 
-server.listen(3000, () => {
+server.listen(3001, () => {
   console.log(`Server running at http://localhost:3000`);
 });
