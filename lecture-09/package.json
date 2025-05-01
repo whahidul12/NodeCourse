@@ -1,0 +1,19 @@
+{
+    "name": "expess_class_01",
+    "version": "1.12.1",
+    "description": "this is a express tutorial folder",
+    "license": "ISC",
+    "author": "Whahidul Islam",
+    "type": "commonjs",
+    "main": "server.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "nodemon server.js"
+    },
+    "devDependencies": {
+        "nodemon": "^3.1.10"
+    },
+    "dependencies": {
+        "express": "^5.1.0"
+    }
+}
