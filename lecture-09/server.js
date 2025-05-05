@@ -1,29 +1,26 @@
-const http = require('http');
 const express = require('express');
-const { log } = require('console');
 
 const app = express();
 
-let y = 0;
-
-app.use((reqA, resA, nextA) => {
+app.get("/", (reqA, resA, nextA) => {
   console.log("first:", reqA.url, reqA.method);
   console.log('first');
+  resA.send("<h1>hi there1</h1>");
   nextA()
 });
-app.use((reqA, resA, nextA) => {
+app.use("/page-2", (reqA, resA, nextA) => {
   console.log("second:", reqA.url, reqA.method);
   console.log('second');
-  nextA()
+  resA.send("<h1>hi there2</h1>");
+  console.log("page 2");
 });
-app.use((reqA, resA, nextA) => {
+app.use("/page-3", (reqA, resA, nextA) => {
   console.log("third:", reqA.url, reqA.method);
   console.log('third');
+  resA.send("<h1>hi there3</h1>");
+  console.log("page 3");
 });
 
-const server = http.createServer(app);
-
-server.listen(3002, () => {
+app.listen(3002, () => {
   console.log('http://localhost:3002');
-
 })
